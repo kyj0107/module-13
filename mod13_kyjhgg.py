@@ -1,6 +1,17 @@
 import unittest
 from datetime import datetime
 
+"""
+Okay, it turns out I have no idea what I'm doing?
+
+After watching the videos, I assumed that the unit tests should be able to fail?
+
+Like, that's the point. It's supposed to highlight to you where things went wrong without actually crashing the program?
+
+Worst case scenario, if anybody does respond before the deadline, I'll fix the unit tests accordingly...
+
+"""
+
 def get_symbol():
 
     symbol = input("Enter a stocks symbol: ")
@@ -40,31 +51,29 @@ class InputTest(unittest.TestCase):
 
         chart_type = get_chart_type()
         is_number = chart_type.isdigit()
-        if (is_number == True):
-            correct_length = True if len(chart_type) == 1 and (int(chart_type) > 0 and int(chart_type) < 3) else False
-            self.assertEqual(correct_length, True)
+        self.assertEqual(is_number, True)
+        correct_length = True if len(chart_type) == 1 and (int(chart_type) > 0 and int(chart_type) < 3) else False
+        self.assertEqual(correct_length, True)
 
     def test_get_time_series(self):
 
         time_series = get_time_series()
         is_number = time_series.isdigit()
-        if (is_number == True):
-            correct_length = True if len(time_series) == 1 and (int(time_series) > 0 and int(time_series) < 5) else False
-            self.assertEqual(correct_length, True)
+        self.assertEqual(is_number, True)
+        correct_length = True if len(time_series) == 1 and (int(time_series) > 0 and int(time_series) < 5) else False
+        self.assertEqual(correct_length, True)
     
     def test_start_date(self):
 
         start_date = get_start_date()
         is_start_date = bool(datetime.strptime(start_date, '%Y-%m-%d'))
-        if (is_start_date == True):
-            self.assertEqual(is_start_date, True)
+        self.assertEqual(is_start_date, True)
 
     def test_end_date(self):
 
         end_date = get_end_date()
         is_end_date = bool(datetime.strptime(end_date, '%Y-%m-%d'))
-        if (is_end_date == True):
-            self.assertEqual(is_end_date, True)
+        self.assertEqual(is_end_date, True)
         
 if __name__ == "__main__": # God, I HATE this method of calling main()
     unittest.main()
